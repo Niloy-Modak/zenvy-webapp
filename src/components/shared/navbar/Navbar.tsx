@@ -81,26 +81,7 @@ export default function Navbar() {
   return (
     <header className="w-full sticky top-0 z-50">
       {/* 3. Apple Liquid Glass Background Effect */}
-      <div className="absolute inset-0 bg-white/60 backdrop-blur-xl saturate-150 border-b border-black/5 shadow-sm -z-10" />
-
-      {/* Announcement Bar (Integrated into glass effect) */}
-      <div className="w-full bg-black/90 text-white text-xs md:text-sm py-2 px-4 relative flex items-center justify-center">
-        <p className="text-center font-light">
-          Sign up and get 20% off to your first order.{" "}
-          <Link
-            href="/sign-up"
-            className="underline font-medium hover:text-gray-300 transition duration-300"
-          >
-            Sign Up Now
-          </Link>
-        </p>
-        <button
-          className="hidden md:block absolute right-4 p-1 hover:scale-110 transition-transform duration-200"
-          aria-label="Close announcement"
-        >
-          <X className="h-4 w-4" />
-        </button>
-      </div>
+      <div className="absolute inset-0 bg-white/60 backdrop-blur-xl saturate-150 border-b border-primary/5 shadow-sm -z-10" />
 
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-4 md:gap-10">
@@ -108,7 +89,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className="md:hidden p-1 text-black"
+            className="md:hidden p-1 text-primary"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -151,7 +132,7 @@ export default function Navbar() {
         </div>
 
         {/* 4. Desktop Navigation Links with Hover Dropdown */}
-        <nav className="hidden md:flex items-center gap-8 text-black font-medium whitespace-nowrap h-full">
+        <nav className="hidden md:flex items-center gap-8 text-primary font-medium whitespace-nowrap h-full">
           {NavLinks.map((item) => (
             <div
               key={item.name}
@@ -189,7 +170,7 @@ export default function Navbar() {
                         <motion.div key={idx} variants={itemVariants}>
                           <Link
                             href={`${item.link}/${sub.toLowerCase()}`}
-                            className="block px-4 py-2 rounded-lg text-sm capitalize hover:bg-black/5 hover:text-black transition-colors"
+                            className="block px-4 py-2 rounded-lg text-sm capitalize hover:bg-primary/5 hover:text-primary transition-colors"
                           >
                             {sub}
                           </Link>
@@ -209,12 +190,12 @@ export default function Navbar() {
           <input
             type="text"
             placeholder="Search for products..."
-            className="w-full bg-black/5 border border-transparent focus:border-black/20 text-sm text-black pl-12 pr-4 py-2.5 rounded-full outline-none transition-all duration-300 placeholder:text-gray-500"
+            className="w-full bg-primary/5 border border-transparent focus:border-primary/20 text-sm text-primary pl-12 pr-4 py-2.5 rounded-full outline-none transition-all duration-300 placeholder:text-gray-500"
           />
         </div>
 
         {/* 5. Utility Icons with Premium Hover Scales */}
-        <div className="flex items-center gap-4 text-black">
+        <div className="flex items-center gap-4 text-primary">
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -247,7 +228,7 @@ export default function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="md:hidden max-h-[calc(100vh-96px)] absolute top-full left-0 w-full bg-white/80 backdrop-blur-2xl border-t border-black/5 overflow-hidden shadow-2xl"
+            className="md:hidden max-h-[calc(100vh-64px)] absolute top-full left-0 w-full bg-white/80 backdrop-blur-2xl border-t border-primary/5 overflow-hidden shadow-2xl"
           >
             <div className="px-6 py-8 flex flex-col gap-6 max-h-[calc(100vh-120px)] overflow-y-auto">
               {NavLinks.map((item, index) => (
@@ -256,13 +237,13 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.4 }}
-                  className="border-b border-black/10 pb-4 last:border-0"
+                  className="border-b border-primary/10 pb-4 last:border-0"
                 >
                   {item.subLinks ? (
                     <div>
                       <button
                         onClick={() => toggleAccordion(item.name)}
-                        className="w-full flex items-center justify-between text-xl font-medium text-black"
+                        className="w-full flex items-center justify-between text-xl font-medium text-primary"
                       >
                         {item.name}
                         <motion.div
@@ -310,7 +291,7 @@ export default function Navbar() {
                     <Link
                       href={item.link}
                       onClick={() => setIsMenuOpen(false)}
-                      className="block text-xl font-medium text-black"
+                      className="block text-xl font-medium text-primary"
                     >
                       {item.name}
                     </Link>

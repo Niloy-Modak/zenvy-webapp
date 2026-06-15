@@ -1,3 +1,4 @@
+import TopLists from "@/components/pages/home/TopLists";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <section>
       Home
+      <TopLists />
     </section>
   );
 }
