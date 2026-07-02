@@ -2,6 +2,7 @@
 import ShopCart from "@/components/shared/carts/ShopCart";
 import { shortProductList } from "@/database/constants"; 
 
+
 export default function TopLists() {
   if (!shortProductList || shortProductList.length === 0) {
     return (
