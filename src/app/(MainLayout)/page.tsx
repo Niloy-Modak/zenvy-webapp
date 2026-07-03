@@ -1,4 +1,6 @@
+import Banner from "@/components/pages/home/Banner";
 import TopLists from "@/components/pages/home/TopLists";
+
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +11,10 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <section>
-      Home
+      {/* Banner Section */}
+      <Banner />
+
+      {/* Top Lists Section */}
       <TopLists />
     </section>
   );
