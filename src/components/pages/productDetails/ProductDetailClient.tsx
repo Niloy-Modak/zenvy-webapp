@@ -99,7 +99,7 @@ export default function ProductDetailClient({
                   <button
                     key={i}
                     onClick={() => handleThumbnailClick(img.url, img.color)}
-                    className={`relative flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 transition-all duration-200 bg-[#F5F5F5]
+                    className={`relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 transition-all duration-200 bg-[#F5F5F5]
                       ${
                         isActive
                           ? "border-gray-900 shadow-sm"
