@@ -6,7 +6,12 @@ export type CategoryName = "shirt" | "t-shirt" | "jeans" | "hoodie" | "shorts";
 
 export type Size = "S" | "M" | "L" | "XL" | "XXL";
 
-export type OrderStatus = "PENDING" | "PAID" | "SHIPPED" | "DELIVERED" | "CANCELLED";
+export type OrderStatus =
+  | "PENDING"
+  | "PAID"
+  | "SHIPPED"
+  | "DELIVERED"
+  | "CANCELLED";
 
 export type AuthProvider = "PASSWORD" | "GOOGLE" | "BOTH";
 
@@ -30,6 +35,7 @@ export interface ProductImage {
 export interface ProductVariant {
   id: string;
   color: string;
+  hexCode: string; // e.g. "#6B7C3E" — stored in DB, never hardcoded in frontend
   size: Size;
   sku: string;
   stock: number;
@@ -37,14 +43,19 @@ export interface ProductVariant {
 }
 
 // ─── Variants grouped by color ────────────────────────────────────────────────
+// hexCode lives here so the frontend swatch just reads colorData.hexCode —
+// no COLOR_MAP, no hardcoding, new colors work automatically.
 
 export type VariantsByColor = Record<
-  string,
+  string, // color name e.g. "olive"
   {
-    variantId: string;
-    size: Size;
-    stock: number;
-  }[]
+    hexCode: string; // e.g. "#6B7C3E"
+    variants: {
+      variantId: string;
+      size: Size;
+      stock: number;
+    }[];
+  }
 >;
 
 // ─── Product (list shape — lightweight for product cards) ─────────────────────
@@ -56,10 +67,10 @@ export interface ProductListItem {
   category: Category;
   basePrice: number;
   discountPercentage: number; // 0–100
-  finalPrice: number;         // computed: basePrice * (1 - discountPercentage / 100)
+  finalPrice: number; // computed: basePrice * (1 - discountPercentage / 100)
   thumbnail: string;
-  colors: string[];           // distinct colors e.g. ["red", "blue"]
-  inStock: boolean;           // true if any variant has stock > 0
+  colors: string[]; // distinct color names e.g. ["red", "blue"]
+  inStock: boolean; // true if any variant has stock > 0
 }
 
 // ─── Product (detail shape — for product detail page) ─────────────────────────
@@ -74,7 +85,7 @@ export interface ProductDetail {
   discountPercentage: number;
   finalPrice: number;
   images: ProductImage[];
-  variantsByColor: VariantsByColor;
+  variantsByColor: VariantsByColor; // hex is inside here — frontend needs nothing else
 }
 
 // ─── Cart ─────────────────────────────────────────────────────────────────────
@@ -85,9 +96,10 @@ export interface CartItem {
   productName: string;
   slug: string;
   color: string;
+  hexCode: string; // carried so cart can show the color swatch without a lookup
   size: Size;
   quantity: number;
-  unitPrice: number;   // finalPrice at the time of adding to cart
+  unitPrice: number; // finalPrice snapshot at time of adding to cart
   thumbnail: string;
 }
 

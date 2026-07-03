@@ -1,11 +1,21 @@
-import React from 'react';
+// app/(MainLayout)/(detailsPage)/[slug]/page.tsx
+// No "use client" — server component
 
-const ProductDetailsPage = () => {
-    return (
-        <div>
-            <h1 className="text-3xl font-bold mb-4">Product Details</h1>
-        </div>
-    );
-};
+import { notFound } from "next/navigation";
+import { shortProductDetailsList } from "@/database/constants";
+import ProductDetailClient from "@/components/pages/productDetails/ProductDetailClient";
+// import ProductDetailClient from "@/components/ProductDetailClient";
 
-export default ProductDetailsPage;
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function ProductDetailsPage({ params }: PageProps) {
+  const { slug } = await params; // ✅ Next.js 15: params is a Promise
+
+  const product = shortProductDetailsList.find((p) => p.slug === slug);
+
+  if (!product) return notFound();
+
+  return <ProductDetailClient product={product} />;
+}

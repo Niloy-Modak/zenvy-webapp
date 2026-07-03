@@ -40,7 +40,7 @@ export const shortProductList: ProductListItem[] = [
     basePrice: 69.99,
     discountPercentage: 15,
     finalPrice: getFinalPrice(69.99, 15),
-    thumbnail: "/products/product_image.png",
+    thumbnail: "/products/Jeans/too-blue-jeans.jpg",
     colors: ["indigo", "black", "grey"],
     inStock: true,
   },
@@ -72,29 +72,38 @@ export const shortProductDetailsList: ProductDetail[] = [
     discountPercentage: 20,
     finalPrice: getFinalPrice(49.99, 20),
     images: [
-      { url: "/products/product_image.png",  color: "white" },
-      { url: "/products/product_image.png",   color: "blue"  },
-      { url: "/products/product_image.png",  color: "olive" },
+      { url: "/products/product_image.png", color: "white" },
+      { url: "/products/t-shirt-too-blue.jpg", color: "blue" },
+      { url: "/products/t-shirt-red.jpg", color: "olive" },
     ],
     variantsByColor: {
-      white: [
-        { variantId: "var_1",  size: "M",   stock: 5 },
-        { variantId: "var_2",  size: "L",   stock: 3 },
-        { variantId: "var_3",  size: "XL",  stock: 2 },
-        { variantId: "var_4",  size: "XXL", stock: 0 },
-      ],
-      blue: [
-        { variantId: "var_5",  size: "M",   stock: 4 },
-        { variantId: "var_6",  size: "L",   stock: 6 },
-        { variantId: "var_7",  size: "XL",  stock: 1 },
-        { variantId: "var_8",  size: "XXL", stock: 0 },
-      ],
-      olive: [
-        { variantId: "var_9",  size: "M",   stock: 3 },
-        { variantId: "var_10", size: "L",   stock: 3 },
-        { variantId: "var_11", size: "XL",  stock: 0 },
-        { variantId: "var_12", size: "XXL", stock: 2 },
-      ],
+      white: {
+        hexCode: "#F5F5F5",
+        variants: [
+          { variantId: "var_1", size: "M", stock: 5 },
+          { variantId: "var_2", size: "L", stock: 3 },
+          { variantId: "var_3", size: "XL", stock: 2 },
+          { variantId: "var_4", size: "XXL", stock: 0 },
+        ],
+      },
+      blue: {
+        hexCode: "#3B82F6",
+        variants: [
+          { variantId: "var_5", size: "M", stock: 4 },
+          { variantId: "var_6", size: "L", stock: 6 },
+          { variantId: "var_7", size: "XL", stock: 1 },
+          { variantId: "var_8", size: "XXL", stock: 0 },
+        ],
+      },
+      olive: {
+        hexCode: "#6B7C3E",
+        variants: [
+          { variantId: "var_9", size: "M", stock: 3 },
+          { variantId: "var_10", size: "L", stock: 3 },
+          { variantId: "var_11", size: "XL", stock: 0 },
+          { variantId: "var_12", size: "XXL", stock: 2 },
+        ],
+      },
     },
   },
 
@@ -111,27 +120,36 @@ export const shortProductDetailsList: ProductDetail[] = [
     images: [
       { url: "/products/product_image.png", color: "black" },
       { url: "/products/product_image.png", color: "white" },
-      { url: "/products/product_image.png",   color: "red"   },
+      { url: "/products/product_image.png", color: "red" },
     ],
     variantsByColor: {
-      black: [
-        { variantId: "var_13", size: "S",  stock: 8  },
-        { variantId: "var_14", size: "M",  stock: 10 },
-        { variantId: "var_15", size: "L",  stock: 7  },
-        { variantId: "var_16", size: "XL", stock: 3  },
-      ],
-      white: [
-        { variantId: "var_17", size: "S",  stock: 5 },
-        { variantId: "var_18", size: "M",  stock: 4 },
-        { variantId: "var_19", size: "L",  stock: 2 },
-        { variantId: "var_20", size: "XL", stock: 0 },
-      ],
-      red: [
-        { variantId: "var_21", size: "S",  stock: 3 },
-        { variantId: "var_22", size: "M",  stock: 6 },
-        { variantId: "var_23", size: "L",  stock: 4 },
-        { variantId: "var_24", size: "XL", stock: 1 },
-      ],
+      black: {
+        hexCode: "#1C1C1C",
+        variants: [
+          { variantId: "var_13", size: "S", stock: 8 },
+          { variantId: "var_14", size: "M", stock: 10 },
+          { variantId: "var_15", size: "L", stock: 7 },
+          { variantId: "var_16", size: "XL", stock: 3 },
+        ],
+      },
+      white: {
+        hexCode: "#F5F5F5",
+        variants: [
+          { variantId: "var_17", size: "S", stock: 5 },
+          { variantId: "var_18", size: "M", stock: 4 },
+          { variantId: "var_19", size: "L", stock: 2 },
+          { variantId: "var_20", size: "XL", stock: 0 },
+        ],
+      },
+      red: {
+        hexCode: "#EF4444",
+        variants: [
+          { variantId: "var_21", size: "S", stock: 3 },
+          { variantId: "var_22", size: "M", stock: 6 },
+          { variantId: "var_23", size: "L", stock: 4 },
+          { variantId: "var_24", size: "XL", stock: 1 },
+        ],
+      },
     },
   },
 
@@ -146,29 +164,38 @@ export const shortProductDetailsList: ProductDetail[] = [
     discountPercentage: 15,
     finalPrice: getFinalPrice(69.99, 15),
     images: [
-      { url: "/products/product_image.png", color: "indigo" },
-      { url: "/products/product_image.png",  color: "black"  },
-      { url: "/products/product_image.png",   color: "grey"   },
+      { url: "/products/Jeans/too-blue-jeans.jpg", color: "indigo" },
+      { url: "/products/Jeans/ash-jeans.jpg", color: "grey" },
+      { url: "/products/Jeans/black-jeans.jpg", color: "black" },
     ],
     variantsByColor: {
-      indigo: [
-        { variantId: "var_25", size: "S",  stock: 4 },
-        { variantId: "var_26", size: "M",  stock: 6 },
-        { variantId: "var_27", size: "L",  stock: 5 },
-        { variantId: "var_28", size: "XL", stock: 2 },
-      ],
-      black: [
-        { variantId: "var_29", size: "S",  stock: 3 },
-        { variantId: "var_30", size: "M",  stock: 7 },
-        { variantId: "var_31", size: "L",  stock: 4 },
-        { variantId: "var_32", size: "XL", stock: 0 },
-      ],
-      grey: [
-        { variantId: "var_33", size: "S",  stock: 2 },
-        { variantId: "var_34", size: "M",  stock: 3 },
-        { variantId: "var_35", size: "L",  stock: 1 },
-        { variantId: "var_36", size: "XL", stock: 0 },
-      ],
+      indigo: {
+        hexCode: "#4338CA",
+        variants: [
+          { variantId: "var_25", size: "S", stock: 4 },
+          { variantId: "var_26", size: "M", stock: 6 },
+          { variantId: "var_27", size: "L", stock: 5 },
+          { variantId: "var_28", size: "XL", stock: 2 },
+        ],
+      },
+      black: {
+        hexCode: "#1C1C1C",
+        variants: [
+          { variantId: "var_29", size: "S", stock: 3 },
+          { variantId: "var_30", size: "M", stock: 7 },
+          { variantId: "var_31", size: "L", stock: 4 },
+          { variantId: "var_32", size: "XL", stock: 0 },
+        ],
+      },
+      grey: {
+        hexCode: "#9CA3AF",
+        variants: [
+          { variantId: "var_33", size: "S", stock: 2 },
+          { variantId: "var_34", size: "M", stock: 3 },
+          { variantId: "var_35", size: "L", stock: 1 },
+          { variantId: "var_36", size: "XL", stock: 0 },
+        ],
+      },
     },
   },
 
@@ -184,31 +211,40 @@ export const shortProductDetailsList: ProductDetail[] = [
     finalPrice: getFinalPrice(59.99, 10),
     images: [
       { url: "/products/product_image.png", color: "charcoal" },
-      { url: "/products/product_image.png",     color: "navy"     },
-      { url: "/products/product_image.png",     color: "sand"     },
+      { url: "/products/product_image.png", color: "navy" },
+      { url: "/products/product_image.png", color: "sand" },
     ],
     variantsByColor: {
-      charcoal: [
-        { variantId: "var_37", size: "S",   stock: 3 },
-        { variantId: "var_38", size: "M",   stock: 5 },
-        { variantId: "var_39", size: "L",   stock: 4 },
-        { variantId: "var_40", size: "XL",  stock: 2 },
-        { variantId: "var_41", size: "XXL", stock: 1 },
-      ],
-      navy: [
-        { variantId: "var_42", size: "S",   stock: 2 },
-        { variantId: "var_43", size: "M",   stock: 6 },
-        { variantId: "var_44", size: "L",   stock: 5 },
-        { variantId: "var_45", size: "XL",  stock: 0 },
-        { variantId: "var_46", size: "XXL", stock: 0 },
-      ],
-      sand: [
-        { variantId: "var_47", size: "S",   stock: 4 },
-        { variantId: "var_48", size: "M",   stock: 3 },
-        { variantId: "var_49", size: "L",   stock: 2 },
-        { variantId: "var_50", size: "XL",  stock: 1 },
-        { variantId: "var_51", size: "XXL", stock: 0 },
-      ],
+      charcoal: {
+        hexCode: "#4B5563",
+        variants: [
+          { variantId: "var_37", size: "S", stock: 3 },
+          { variantId: "var_38", size: "M", stock: 5 },
+          { variantId: "var_39", size: "L", stock: 4 },
+          { variantId: "var_40", size: "XL", stock: 2 },
+          { variantId: "var_41", size: "XXL", stock: 1 },
+        ],
+      },
+      navy: {
+        hexCode: "#1E3A5F",
+        variants: [
+          { variantId: "var_42", size: "S", stock: 2 },
+          { variantId: "var_43", size: "M", stock: 6 },
+          { variantId: "var_44", size: "L", stock: 5 },
+          { variantId: "var_45", size: "XL", stock: 0 },
+          { variantId: "var_46", size: "XXL", stock: 0 },
+        ],
+      },
+      sand: {
+        hexCode: "#C2A97A",
+        variants: [
+          { variantId: "var_47", size: "S", stock: 4 },
+          { variantId: "var_48", size: "M", stock: 3 },
+          { variantId: "var_49", size: "L", stock: 2 },
+          { variantId: "var_50", size: "XL", stock: 1 },
+          { variantId: "var_51", size: "XXL", stock: 0 },
+        ],
+      },
     },
   },
 ];
