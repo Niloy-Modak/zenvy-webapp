@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ProductDetail, Size } from "@/database/types";
-// import { StarRating } from "./StarRatingFuntion";
-
-
+import FavoriteButton from "@/components/shared/ui/FavoriteButton";
 
 const SIZE_LABELS: Record<Size, string> = {
   S: "Small",
@@ -30,7 +28,6 @@ export default function ProductDetailClient({
 
   const currentColorData = product.variantsByColor[selectedColor];
 
-  // ── Color swatch clicked → update color + image + reset size ──────────────
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
     setSelectedSize(null);
@@ -38,26 +35,29 @@ export default function ProductDetailClient({
     if (match) setMainImage(match.url);
   };
 
-  // ── Thumbnail clicked → update image + sync color swatch + reset size ─────
   const handleThumbnailClick = (imgUrl: string, imgColor: string | null) => {
     setMainImage(imgUrl);
     if (imgColor && product.variantsByColor[imgColor]) {
-      // Only sync color if this image maps to a known color variant
       setSelectedColor(imgColor);
       setSelectedSize(null);
     }
   };
 
   return (
-    <section>
-      <div className=" py-8 sm:py-12">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+    // 1. Added overflow-x-hidden to prevent `scale-110` or shadows from leaking outside the viewport
+    <section className="overflow-x-hidden">
+      <div className="py-8 sm:py-12">
+        {/* 2. Added min-w-0 to the main flex container to prevent child blowout */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 standard-width min-w-0">
+          
           {/* ── LEFT: Image Gallery ── */}
-          <div className="flex flex-col-reverse sm:flex-row gap-4 lg:w-[55%]">
+          {/* 3. Added w-full and min-w-0 so it respects parent bounds */}
+          <div className="flex flex-col-reverse sm:flex-row gap-4 lg:w-[55%] w-full min-w-0">
+            
             {/* Thumbnails */}
-            <div className="flex flex-row sm:flex-col gap-3 overflow-x-auto sm:overflow-visible">
+            {/* 4. Added w-full sm:w-auto to prevent the horizontal scroll from pushing the page width */}
+            <div className="flex flex-row sm:flex-col gap-3 overflow-x-auto sm:overflow-visible w-full sm:w-auto pb-2 sm:pb-0">
               {product.images.map((img, i) => {
-                // Thumbnail is "active" if its color matches selectedColor
                 const isActive =
                   img.color !== null
                     ? img.color === selectedColor
@@ -86,12 +86,12 @@ export default function ProductDetailClient({
             </div>
 
             {/* Main Image */}
-            <div className="relative flex-1 aspect-square rounded-3xl overflow-hidden bg-[#F5F5F5]">
+            <div className="relative flex-1 aspect-square rounded-4xl overflow-hidden w-full min-w-0">
               <Image
                 src={mainImage}
                 alt={product.name}
                 fill
-                className="object-contain mix-blend-multiply p-8 transition-all duration-300"
+                className="object-contain mix-blend-multiply sm:p-8 lg:p-0 transition-all duration-300"
                 sizes="(max-width: 1024px) 100vw, 55vw"
                 priority
               />
@@ -99,13 +99,19 @@ export default function ProductDetailClient({
           </div>
 
           {/* ── RIGHT: Product Info ── */}
-          <div className="flex flex-col gap-5 lg:w-[45%] lg:pt-2">
-            {/* Product Name */}
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight uppercase tracking-tight">
-              {product.name}
-            </h1>
-
-            {/* <StarRating rating={4.5} /> */}
+          <div className="flex flex-col gap-5 lg:w-[45%] lg:pt-2 w-full min-w-0">
+            
+            {/* Title + Favorite Button */}
+            <div className="flex items-start justify-between gap-4">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight uppercase tracking-tight flex-1">
+                {product.name}
+              </h1>
+              <FavoriteButton 
+                productId={product.slug} 
+                variant="inline"
+                size="lg"
+              />
+            </div>
 
             {/* Price + Discount */}
             <div className="flex items-center gap-3">
@@ -127,7 +133,7 @@ export default function ProductDetailClient({
             <hr className="border-gray-100" />
 
             {/* Product Description */}
-            <p className="text-sm text-primary/60 leading-relaxed">
+            <p className="text-paragraph">
               {product.description}
             </p>
 
@@ -136,7 +142,8 @@ export default function ProductDetailClient({
               <p className="text-sm font-semibold text-gray-700 mb-3">
                 Select Colors
               </p>
-              <div className="flex gap-3">
+              {/* 5. Added flex-wrap just in case there are many colors */}
+              <div className="flex flex-wrap gap-3">
                 {colorEntries.map(([colorName, colorData]) => (
                   <button
                     key={colorName}
@@ -199,7 +206,8 @@ export default function ProductDetailClient({
             <hr className="border-gray-100" />
 
             {/* Quantity + Add to Cart */}
-            <div className="flex items-center gap-4">
+            {/* 6. Added flex-wrap sm:flex-nowrap so narrow phones don't force a horizontal scroll */}
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-4">
               <div className="flex items-center gap-4 bg-gray-100 rounded-full px-5 py-3">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -220,7 +228,7 @@ export default function ProductDetailClient({
 
               <button
                 disabled={!selectedSize}
-                className={`flex-1 py-3.5 rounded-full text-sm font-semibold transition-all duration-200
+                className={`flex-1 w-full py-3.5 rounded-full text-sm font-semibold transition-all duration-200
                   ${
                     selectedSize
                       ? "bg-gray-900 text-white hover:bg-gray-700 active:scale-95"

@@ -2,14 +2,22 @@
 
 @theme {
   --color-primary: #000000;
-  --color-secondary: #E3FFFF;
-  --color-background: #F2F0F1;
+  --color-secondary: #e3ffff;
+  --color-background: #f2f0f1;
 }
 
 body {
-  font-family: Inter;  
+  font-family: Inter;
 }
 
 .standard-width {
   @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.items-grid {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
+}
+
+.text-paragraph {
+  @apply font-light text-primary/60 text-sm lg:text-base max-w-lg text-left leading-relaxed;
 }

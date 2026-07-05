@@ -1,7 +1,11 @@
 // components/ShopCart.tsx
+"use client";
+
 import { ProductListItem } from "@/database/types";
 import Image from "next/image";
 import Link from "next/link";
+import FavoriteButton from "../ui/FavoriteButton";
+import { useState } from "react";
 
 interface ShopCartProps {
   product: ProductListItem;
@@ -9,14 +13,25 @@ interface ShopCartProps {
 
 export default function ShopCart({ product }: ShopCartProps) {
   const hasDiscount = product.discountPercentage > 0;
+  const [isClickingFav, setIsClickingFav] = useState(false);
+
+  const handleContainerClick = (e: React.MouseEvent) => {
+    // If clicking favorite button area, don't navigate
+    if (isClickingFav) {
+      e.preventDefault();
+      setIsClickingFav(false);
+      return;
+    }
+  };
 
   return (
     <Link
       href={`/${product.slug}`}
       className="group flex flex-col w-full mx-auto cursor-pointer"
+      onClick={handleContainerClick}
     >
-      {/* Image Container - Corrected with square brackets [] */}
-      <div className="relative w-full aspect-198/200 sm:aspect-295/298 bg-[#F2F2F2] rounded-[20px] overflow-hidden mb-3 flex items-center justify-center p-4">
+      {/* Image Container */}
+      <div className="relative w-full aspect-198/200 sm:aspect-295/298 bg-[#F2F2F2] rounded-[20px] overflow-hidden mb-3 flex items-center justify-center p-4 group">
         <Image
           src={product.thumbnail}
           alt={product.name}
@@ -24,6 +39,23 @@ export default function ShopCart({ product }: ShopCartProps) {
           className="object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
           sizes="(max-width: 640px) 50vw, 295px"
         />
+
+        {/* Favorite Button Wrapper */}
+        <div
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20"
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsClickingFav(true);
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsClickingFav(false);
+          }}
+        >
+          <FavoriteButton productId={product.slug} variant="inline" size="md" />
+        </div>
       </div>
 
       {/* Product Details */}
@@ -32,9 +64,9 @@ export default function ShopCart({ product }: ShopCartProps) {
           {product.name}
         </h3>
 
-        {/* Pricing Logic - Added flex-wrap and responsive sizing */}
+        {/* Pricing Logic */}
         <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5 flex-wrap">
-          {/* Final Price (Scales down gracefully on mobile screens) */}
+          {/* Final Price */}
           <span className="text-base sm:text-xl font-medium text-gray-900 whitespace-nowrap">
             ${product.finalPrice.toFixed(2)}
           </span>

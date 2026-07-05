@@ -13,7 +13,7 @@ const Banner = () => {
             YOUR STYLE
           </h1>
 
-          <p className="mt-5 font-light text-primary/60 text-sm sm:text-base max-w-lg text-left leading-relaxed">
+          <p className="mt-5 font-light text-primary/60 text-sm lg:text-base max-w-lg text-left leading-relaxed">
             Browse through our diverse range of meticulously crafted garments,
             designed to bring out your individuality and cater to your sense of
             style.

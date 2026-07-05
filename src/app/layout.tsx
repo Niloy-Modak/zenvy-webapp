@@ -18,7 +18,7 @@ export default function RootLayout({
       lang="en"
       className={`${InterFront.variable} h-full antialiased`}
     >
-      <body >{children}</body>
+      <body suppressHydrationWarning >{children}</body>
     </html>
   );
 }

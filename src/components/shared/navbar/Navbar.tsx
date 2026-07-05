@@ -84,7 +84,7 @@ export default function Navbar() {
       <div className="absolute inset-0 bg-white/60 backdrop-blur-xl saturate-150 border-b border-primary/5 shadow-sm -z-10" />
 
       {/* Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-4 md:gap-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-4 lg:gap-10">
         {/* Mobile: Hamburger Menu & Logo Group */}
         <div className="flex items-center gap-4">
           <motion.button
@@ -132,7 +132,7 @@ export default function Navbar() {
         </div>
 
         {/* 4. Desktop Navigation Links with Hover Dropdown */}
-        <nav className="hidden md:flex items-center gap-8 text-primary font-medium whitespace-nowrap h-full">
+        <nav className="hidden md:flex text-xs lg:text-base items-center gap-8 text-primary font-medium whitespace-nowrap h-full">
           {NavLinks.map((item) => (
             <div
               key={item.name}
@@ -185,7 +185,7 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop Search Bar */}
-        <div className="hidden md:flex flex-1 max-w-[500px] relative items-center">
+        <div className="hidden md:flex flex-1 max-w-125 relative items-center">
           <Search className="absolute left-4 h-5 w-5 text-gray-400 pointer-events-none" />
           <input
             type="text"
