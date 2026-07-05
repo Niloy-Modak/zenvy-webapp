@@ -100,22 +100,24 @@ export default function ProductDetailClient({
 
           {/* ── RIGHT: Product Info ── */}
           <div className="flex flex-col gap-5 lg:w-[45%] lg:pt-2">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight uppercase tracking-tight">
+            {/* Product Name */}
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight uppercase tracking-tight">
               {product.name}
             </h1>
 
             {/* <StarRating rating={4.5} /> */}
 
+            {/* Price + Discount */}
             <div className="flex items-center gap-3">
-              <span className="text-3xl font-bold text-gray-900">
+              <span className="text-3xl font-medium text-gray-900">
                 ${product.finalPrice.toFixed(2)}
               </span>
               {product.discountPercentage > 0 && (
                 <>
-                  <span className="text-xl font-medium text-gray-400 line-through">
+                  <span className="text-xl font-medium text-primary/30 line-through">
                     ${product.basePrice.toFixed(2)}
                   </span>
-                  <span className="text-sm font-semibold text-red-500 bg-red-50 px-2.5 py-1 rounded-full">
+                  <span className="text-sm font-medium text-red-500 bg-red-50 px-2.5 py-1 rounded-full">
                     -{product.discountPercentage}%
                   </span>
                 </>
@@ -124,7 +126,8 @@ export default function ProductDetailClient({
 
             <hr className="border-gray-100" />
 
-            <p className="text-sm text-gray-500 leading-relaxed">
+            {/* Product Description */}
+            <p className="text-sm text-primary/60 leading-relaxed">
               {product.description}
             </p>
 

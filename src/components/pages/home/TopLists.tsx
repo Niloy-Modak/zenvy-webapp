@@ -13,7 +13,7 @@ export default function TopLists() {
   }
 
   return (
-    <div className="py-8">
+    <div className="py-8 standard-width">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
         {shortProductList.map((product) => (
           <ShopCart key={product.id} product={product} />

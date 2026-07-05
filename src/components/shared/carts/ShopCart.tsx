@@ -28,14 +28,14 @@ export default function ShopCart({ product }: ShopCartProps) {
 
       {/* Product Details */}
       <div className="flex flex-col gap-0.5 sm:gap-1 px-1">
-        <h3 className="text-sm sm:text-base font-bold text-gray-900 truncate">
+        <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate">
           {product.name}
         </h3>
 
         {/* Pricing Logic - Added flex-wrap and responsive sizing */}
         <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5 flex-wrap">
           {/* Final Price (Scales down gracefully on mobile screens) */}
-          <span className="text-base sm:text-xl font-bold text-gray-900 whitespace-nowrap">
+          <span className="text-base sm:text-xl font-medium text-gray-900 whitespace-nowrap">
             ${product.finalPrice.toFixed(2)}
           </span>
 
@@ -45,7 +45,7 @@ export default function ShopCart({ product }: ShopCartProps) {
               <span className="text-xs sm:text-base font-medium text-gray-400 line-through whitespace-nowrap">
                 ${product.basePrice.toFixed(2)}
               </span>
-              <span className="text-[10px] sm:text-xs font-bold text-red-500 bg-red-50 px-1.5 sm:px-2 py-0.5 rounded-full">
+              <span className="text-[10px] sm:text-xs font-medium text-red-500 bg-red-50 px-1.5 sm:px-2 py-0.5 rounded-full">
                 -{product.discountPercentage}%
               </span>
             </div>

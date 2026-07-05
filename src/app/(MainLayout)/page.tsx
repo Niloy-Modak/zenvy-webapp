@@ -1,4 +1,5 @@
 import Banner from "@/components/pages/home/Banner";
+import BrandsSection from "@/components/pages/home/BrandsSection";
 import TopLists from "@/components/pages/home/TopLists";
 
 import { Metadata } from "next";
@@ -14,6 +15,7 @@ export default function Home() {
       {/* Banner Section */}
       <Banner />
 
+<BrandsSection />
       {/* Top Lists Section */}
       <TopLists />
     </section>
