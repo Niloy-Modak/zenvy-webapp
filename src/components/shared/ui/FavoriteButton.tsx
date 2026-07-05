@@ -50,7 +50,7 @@ export default function FavoriteButton({
       <motion.button
         onClick={toggleFavorite}
         type="button"
-        className={`flex items-center cursor-pointer justify-center ${config.button} rounded-full shadow-sm flex-shrink-0`}
+        className={`flex items-center cursor-pointer justify-center ${config.button} rounded-full shadow-sm shrink-0`}
         style={{
           backgroundColor: isFavorite ? "#FF4D4F" : "rgba(0, 0, 0, 0.3)",
           backdropFilter: isFavorite ? "none" : "blur(4px)",

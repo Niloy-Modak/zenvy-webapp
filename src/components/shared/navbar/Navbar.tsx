@@ -119,7 +119,7 @@ export default function Navbar() {
           </motion.button>
 
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center min-w-[120px]">
+          <Link href="/" className="flex items-center min-w-30">
             <Image
               src="/main_logo.png"
               alt="SHOP.CO Logo"
@@ -164,7 +164,7 @@ export default function Navbar() {
                       initial="hidden"
                       animate="visible"
                       exit="exit"
-                      className="absolute top-full left-0 mt-[-10px] w-48 bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl rounded-2xl p-3 overflow-hidden"
+                      className="absolute top-full left-0 -mt-2.5 w-48 bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl rounded-2xl p-3 overflow-hidden"
                     >
                       {item.subLinks.map((sub, idx) => (
                         <motion.div key={idx} variants={itemVariants}>
