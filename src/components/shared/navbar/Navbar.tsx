@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Search,
   ShoppingCart,
@@ -54,7 +54,7 @@ const itemVariants = {
   visible: { opacity: 1, x: 0 },
 };
 
-const drawerVariants = {
+const drawerVariants : Variants = {
   hidden: { opacity: 0, height: 0 },
   visible: {
     opacity: 1,

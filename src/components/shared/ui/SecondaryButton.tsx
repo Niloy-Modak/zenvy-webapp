@@ -25,7 +25,7 @@ export default function SecondaryButton({
       onMouseLeave={() => setHovered(false)}
       className="group relative w-auto overflow-hidden rounded-full backdrop-blur-md bg-background/20 border border-primary/30 hover:bg-background/30 transition-all duration-300 cursor-pointer shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)]"
     >
-      <div className="flex items-center justify-center md:justify-start gap-2  py-3 px-8">
+      <div className="flex items-center justify-center md:justify-start gap-2  sm:py-3 py-2 px-4 sm:px-8">
         {/* text */}
         <div className="relative h-6 overflow-hidden">
           <motion.div

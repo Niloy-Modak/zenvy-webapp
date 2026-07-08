@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import SignInForm from '@/components/pages/signIn/SignInForm';
 
 export const metadata: Metadata = {
   title: "Sign In | ZENVY",
@@ -8,8 +9,8 @@ export const metadata: Metadata = {
 
 const SignInPage = () => {
     return (
-        <div>
-            Sign In Page
+        <div >
+            <SignInForm />
         </div>
     );
 };

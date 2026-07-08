@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import SignUpForm from '@/components/pages/signUp/SignUpForm';
 
 export const metadata: Metadata = {
   title: "Sign Up | ZENVY",
@@ -8,8 +9,8 @@ export const metadata: Metadata = {
 
 const SignUpPage = () => {
     return (
-        <div>
-            Sign Up
+        <div className= "">
+            <SignUpForm />
         </div>
     );
 };
