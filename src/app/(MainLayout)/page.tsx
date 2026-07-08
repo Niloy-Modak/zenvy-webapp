@@ -1,5 +1,7 @@
 import Banner from "@/components/pages/home/Banner";
+import BlogSection from "@/components/pages/home/BlogSection";
 import BrandsSection from "@/components/pages/home/BrandsSection";
+import CustomerCare from "@/components/pages/home/CustomerCare";
 import TopLists from "@/components/pages/home/TopLists";
 
 import { Metadata } from "next";
@@ -15,9 +17,11 @@ export default function Home() {
       {/* Banner Section */}
       <Banner />
 
-<BrandsSection />
+      <BrandsSection />
       {/* Top Lists Section */}
       <TopLists />
+      <CustomerCare />
+      <BlogSection />
     </section>
   );
 }
