@@ -11,7 +11,7 @@ export default function AuthLayout({
   return (
     <section className="flex min-h-screen">
       {/* Banner Section - Right Side (Botanical Image) */}
-      <div className="hidden sm:w-3/10 md:w-2/5 lg:w-1/2 sm:flex justify-center items-center bg-gray-100 relative rounded-r-3xl overflow-hidden">
+      <div className="hidden sm:w-3/10 md:w-2/5 lg:w-1/2 sm:flex justify-center items-center bg-gray-100 relative overflow-hidden">
         <Image
           src="/authLayout/auth_cover.png"
           alt="Authentication Cover"

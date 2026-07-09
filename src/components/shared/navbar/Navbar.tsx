@@ -54,7 +54,7 @@ const itemVariants = {
   visible: { opacity: 1, x: 0 },
 };
 
-const drawerVariants : Variants = {
+const drawerVariants: Variants = {
   hidden: { opacity: 0, height: 0 },
   visible: {
     opacity: 1,
@@ -203,17 +203,23 @@ export default function Navbar() {
           >
             <Search className="h-6 w-6" />
           </motion.button>
+
+          {/* Add cart icon */}
+          <Link href="/cart">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-1 cursor-pointer"
+            >
+              <ShoppingCart className="h-6 w-6" />
+            </motion.button>
+          </Link>
+
+          {/* User Button */}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            className="p-1"
-          >
-            <ShoppingCart className="h-6 w-6" />
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-1 hidden sm:block"
+            className="p-1 hidden sm:block cursor-pointer"
           >
             <UserCircle className="h-6 w-6" />
           </motion.button>

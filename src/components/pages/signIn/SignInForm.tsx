@@ -18,9 +18,9 @@ export default function SignInForm() {
       </div>
 
       {/* Premium Glass Container */}
-      <form className="flex flex-col gap-5 p-7 rounded-3xl bg-white/50 backdrop-blur-xl border border-white/70 shadow-2xl relative overflow-hidden group">
+      <form className="flex flex-col gap-5 p-7 rounded-3xl bg-background/50 backdrop-blur-xl border border-white/70 shadow-2xl relative overflow-hidden group">
         {/* Premium Gradient Overlay */}
-        <div className="solute inset-0 bg-linear-to-br from-white/20 via-transparent to-primary/5 pointer-events-none rounded-3xl" />
+        <div className="solute inset-0 bg-linear-to-br from-background/20 via-transparent to-primary/5 pointer-events-none rounded-3xl" />
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none 
         group-hover:bg-primary/10 transition-all duration-500" />
         
