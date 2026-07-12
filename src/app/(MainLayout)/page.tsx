@@ -2,6 +2,7 @@ import Banner from "@/components/pages/home/Banner";
 import BlogSection from "@/components/pages/home/BlogSection";
 import BrandsSection from "@/components/pages/home/BrandsSection";
 import CustomerCare from "@/components/pages/home/CustomerCare";
+import DressStyleSection from "@/components/pages/home/DressStyleSection";
 import TopLists from "@/components/pages/home/TopLists";
 
 import { Metadata } from "next";
@@ -20,6 +21,8 @@ export default function Home() {
       <BrandsSection />
       {/* Top Lists Section */}
       <TopLists />
+
+      <DressStyleSection/>
       <CustomerCare />
       <BlogSection />
     </section>
