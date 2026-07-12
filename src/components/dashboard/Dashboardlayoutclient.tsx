@@ -14,7 +14,7 @@ const DashboardLayoutClient: React.FC<DashboardLayoutClientProps> = ({
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="flex flex-col min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-50">
       {/* Fixed Navbar */}
       <DashNavbar 
         onMenuClick={() => setSidebarOpen(!sidebarOpen)} 
@@ -32,7 +32,7 @@ const DashboardLayoutClient: React.FC<DashboardLayoutClientProps> = ({
         {/* Main Content - Takes remaining space */}
         <main className="flex-1 overflow-y-auto overflow-x-hidden md:ml-64">
           {/* Content Wrapper with Padding */}
-          <div className="w-full p-6 sm:p-8 lg:p-10">
+          <div className="w-full px-6 sm:px-8 lg:px-10">
             {children}
           </div>
         </main>
@@ -40,7 +40,7 @@ const DashboardLayoutClient: React.FC<DashboardLayoutClientProps> = ({
         {/* Mobile Overlay - Optimized */}
         {sidebarOpen && (
           <div
-            className="fixed inset-0 bg-black/40 lg:hidden z-30 transition-opacity duration-200"
+            className="fixed inset-0 bg-black/40 md:hidden z-30 transition-opacity duration-200"
             onClick={() => setSidebarOpen(false)}
             style={{ willChange: "opacity" }}
           />

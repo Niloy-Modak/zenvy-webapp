@@ -3,38 +3,44 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Menu, X, Bell, User } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface DashNavbarProps {
   onMenuClick: () => void;
   sidebarOpen: boolean;
 }
 
-const DashNavbar: React.FC<DashNavbarProps> = ({ onMenuClick, sidebarOpen }) => {
+const DashNavbar: React.FC<DashNavbarProps> = ({
+  onMenuClick,
+  sidebarOpen,
+}) => {
   return (
-    <motion.nav
+    <nav
       className="
         fixed top-0 left-0 right-0 z-40
         bg-white/85 backdrop-blur-xl
-        border-b border-emerald-100/50
+        border-b border-slate-100/50
         shadow-sm
       "
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          
-          {/* Left Section - Logo & Menu Toggle */}
-          <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between h-16 ">
+          {/* Left Section - Logo & Menu Toggle - Slide from Left */}
+          <motion.div
+            className="flex items-center gap-4"
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             {/* Menu Toggle - Mobile */}
             <motion.button
               onClick={onMenuClick}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="
-                lg:hidden p-2 rounded-lg
-                text-slate-600 hover:text-emerald-600
+                md:hidden p-2 rounded-lg
+                text-slate-600 hover:text-primary cursor-pointer
                 hover:bg-slate-100/50 transition-colors
               "
             >
@@ -45,31 +51,41 @@ const DashNavbar: React.FC<DashNavbarProps> = ({ onMenuClick, sidebarOpen }) => 
               )}
             </motion.button>
 
-            {/* Logo */}
+            {/* Main Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="flex items-center gap-2 cursor-pointer"
             >
-              <div
-                className="
-                  w-8 h-8 rounded-lg
-                  bg-gradient-to-br from-emerald-500 to-emerald-600
-                  flex items-center justify-center
-                  shadow-md
-                "
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="origin-left flex flex-col gap-1 items-center min-w-30"
               >
-                <span className="text-white font-bold text-lg">Z</span>
-              </div>
-              <div className="hidden sm:block">
-                <h1 className="text-xl font-bold text-slate-900">Zenvy</h1>
-                <p className="text-xs text-slate-500">Dashboard</p>
-              </div>
-            </motion.div>
-          </div>
+                <Link href={"/"}>
+                  <Image
+                    src="/main_logo.png"
+                    alt="main logo"
+                    width={160}
+                    height={22}
+                    className="w-auto h-5 md:h-6 object-contain"
+                    priority
+                  />
+                </Link>
 
-          {/* Right Section - Notifications & Profile */}
-          <div className="flex items-center gap-3 lg:gap-6">
-            
+                <div className="hidden sm:block">
+                  <p className="text-xs text-slate-500">Dashboard</p>
+                </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Section - Notifications & Profile - Slide from Right */}
+          <motion.div
+            className="flex items-center gap-3 lg:gap-6"
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+          >
             {/* Notification Bell */}
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -98,16 +114,16 @@ const DashNavbar: React.FC<DashNavbarProps> = ({ onMenuClick, sidebarOpen }) => 
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="
-                flex items-center gap-2 px-3 py-2 rounded-lg
-                text-slate-600 hover:text-slate-900
-                hover:bg-slate-100/50 transition-colors
+              className=" group
+                flex items-center gap-2 px-3 py-2 
+                text-primary/70 group-hover:text-primary cursor-pointer
+                hover:bg-gray-300/10 transition-colors rounded-full
               "
             >
               <div
                 className="
                   w-8 h-8 rounded-full
-                  bg-gradient-to-br from-emerald-400 to-emerald-600
+                  bg-linear-to-br from-primary/30  to-primary/60 group-hover:from-primary/40 group-hover:to-primary/70
                   flex items-center justify-center
                 "
               >
@@ -117,7 +133,7 @@ const DashNavbar: React.FC<DashNavbarProps> = ({ onMenuClick, sidebarOpen }) => 
                 Account
               </span>
             </motion.button>
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -125,10 +141,10 @@ const DashNavbar: React.FC<DashNavbarProps> = ({ onMenuClick, sidebarOpen }) => 
       <motion.div
         className="
           absolute bottom-0 left-0 right-0 h-px
-          bg-gradient-to-r from-transparent via-emerald-500/60 to-transparent
+          bg-linear-to-r from-transparent via-primary/40 to-transparent
         "
       />
-    </motion.nav>
+    </nav>
   );
 };
 

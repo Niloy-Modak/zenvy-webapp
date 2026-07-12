@@ -11,6 +11,7 @@ import {
   User,
   LogOut,
   Eye,
+  PackagePlus,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -57,6 +58,12 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           badge: "3",
         },
         {
+          id: "add-product",
+          label: "Add Product",
+          href: "/dashboard/add-product",
+          icon: <PackagePlus className="w-5 h-5" />,
+        },
+        {
           id: "analytics",
           label: "Analytics",
           href: "/dashboard/analytics",
@@ -93,18 +100,18 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {/* Sidebar - Desktop (no animation, always visible on md+) */}
+      {/* Sidebar - Desktop + Medium */}
       <aside
         className="
           hidden md:flex md:flex-col
           fixed left-0 top-16 bottom-0
           w-64 bg-white/95 backdrop-blur-xl
-          border-r border-emerald-100/40
+          border-r border-primary/10
           z-40
           overflow-y-auto
         "
       >
-        <div className="flex-1 px-4 py-8 space-y-8">
+        <div className="flex-1 px-4 space-y-8">
           {menuSections.map((section, sectionIndex) => (
             <div key={sectionIndex}>
               {section.title && (
@@ -113,35 +120,33 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 </h3>
               )}
 
-              <nav className="space-y-1">
+              <nav className="">
                 {section.items.map((item) => (
                   <Link key={item.id} href={item.href}>
                     <div
                       className={`
-                        relative flex items-center gap-3 px-4 py-3 rounded-lg
-                        cursor-pointer transition-all duration-150
-                        ${
-                          isActive(item.href)
-                            ? "bg-emerald-50 text-emerald-700"
-                            : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
-                        }
-                      `}
+                                 group relative flex items-center gap-3 px-4 py-3 my-3 rounded-lg
+                                 cursor-pointer transition-all duration-150
+                            ${
+                              isActive(item.href)
+                                ? "bg-primary/70 text-white"
+                                : "text-slate-600 hover:text-primary/70 hover:bg-primary/10"
+                            }
+                              `}
                     >
-                      {/* Active Indicator - No Animation */}
                       {isActive(item.href) && (
-                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-emerald-600 rounded-r-full" />
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-background rounded-r-full" />
                       )}
 
                       {/* Icon */}
                       <div
-                        className={`
-                          shrink-0 p-2 rounded-lg transition-colors duration-150
-                          ${
-                            isActive(item.href)
-                              ? "bg-emerald-100 text-emerald-600"
-                              : "bg-slate-100 text-slate-500 group-hover:bg-slate-200"
-                          }
-                        `}
+                        className={`shrink-0 p-2 rounded-lg transition-colors duration-150
+                                ${
+                                  isActive(item.href)
+                                    ? "bg-background text-primary/70"
+                                    : "bg-slate-200 text-gray-500 group-hover:bg-primary/50 group-hover:text-white"
+                                }
+                                  `}
                       >
                         {item.icon}
                       </div>
@@ -164,19 +169,12 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             </div>
           ))}
         </div>
-
-        {/* Footer */}
-        <div className="mt-auto px-6 py-8 border-t border-emerald-100/40 bg-gradient-to-t from-emerald-50/30 to-transparent">
-          <p className="text-xs text-slate-500 text-center">
-            Zenvy Dashboard v1.0
-          </p>
-        </div>
       </aside>
 
       {/* Sidebar - Mobile (optimized slide animation) */}
       <aside
         className={`
-          lg:hidden
+          md:hidden
           fixed inset-0 top-16 left-0 bottom-0
           w-64 bg-white/95 backdrop-blur-xl
           border-r border-emerald-100/40
@@ -198,37 +196,31 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
               <nav className="space-y-1">
                 {section.items.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={item.href}
-                    onClick={onClose}
-                  >
+                  <Link key={item.id} href={item.href} onClick={onClose}>
                     <div
                       className={`
-                        relative flex items-center gap-3 px-4 py-3 rounded-lg
-                        cursor-pointer transition-all duration-150
-                        ${
-                          isActive(item.href)
-                            ? "bg-emerald-50 text-emerald-700"
-                            : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
-                        }
-                      `}
+                                 group relative flex items-center gap-3 px-4 py-3 my-3 rounded-lg
+                                 cursor-pointer transition-all duration-150
+                            ${
+                              isActive(item.href)
+                                ? "bg-primary/70 text-white"
+                                : "text-slate-600 hover:text-primary/70 hover:bg-primary/10"
+                            }
+                              `}
                     >
-                      {/* Active Indicator */}
                       {isActive(item.href) && (
-                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-emerald-600 rounded-r-full" />
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-background rounded-r-full" />
                       )}
 
                       {/* Icon */}
                       <div
-                        className={`
-                          shrink-0 p-2 rounded-lg transition-colors duration-150
-                          ${
-                            isActive(item.href)
-                              ? "bg-emerald-100 text-emerald-600"
-                              : "bg-slate-100 text-slate-500"
-                          }
-                        `}
+                        className={`shrink-0 p-2 rounded-lg transition-colors duration-150
+                                ${
+                                  isActive(item.href)
+                                    ? "bg-background text-primary/70"
+                                    : "bg-slate-200 text-gray-500 group-hover:bg-primary/50 group-hover:text-white"
+                                }
+                                  `}
                       >
                         {item.icon}
                       </div>
@@ -250,13 +242,6 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               </nav>
             </div>
           ))}
-        </div>
-
-        {/* Footer */}
-        <div className="mt-auto px-6 py-8 border-t border-emerald-100/40 bg-gradient-to-t from-emerald-50/30 to-transparent">
-          <p className="text-xs text-slate-500 text-center">
-            Zenvy Dashboard v1.0
-          </p>
         </div>
       </aside>
     </>

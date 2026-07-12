@@ -216,13 +216,15 @@ export default function Navbar() {
           </Link>
 
           {/* User Button */}
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-1 hidden sm:block cursor-pointer"
-          >
-            <UserCircle className="h-6 w-6" />
-          </motion.button>
+          <Link href={"/dashboard"}>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-1 hidden sm:block cursor-pointer"
+            >
+              <UserCircle className="h-6 w-6" />
+            </motion.button>
+          </Link>
         </div>
       </div>
 
