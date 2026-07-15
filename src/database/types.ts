@@ -1,80 +1,75 @@
 // @/database/types.ts
 
-// ─── Enums ────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────
+// CATEGORY
+// ─────────────────────────────────────────
+export type CategoryName =
+  | "shirt"
+  | "t-shirt"
+  | "jeans"
+  | "hoodie"
+  | "shorts"
+  | "pants";
 
-export type CategoryName = "shirt" | "t-shirt" | "jeans" | "hoodie" | "shorts";
+export type ClothingSize = "XS" | "S" | "M" | "L" | "XL" | "XXL";
+export type PantsSize = "28" | "30" | "32" | "34" | "36" | "38";
+export type Size = ClothingSize | PantsSize;
 
-export type Size = "S" | "M" | "L" | "XL" | "XXL";
-
-export type OrderStatus =
-  | "PENDING"
-  | "PAID"
-  | "SHIPPED"
-  | "DELIVERED"
-  | "CANCELLED";
-
-export type AuthProvider = "PASSWORD" | "GOOGLE" | "BOTH";
-
-// ─── Category ─────────────────────────────────────────────────────────────────
+export type SizeSystem = "clothing" | "pants";
 
 export interface Category {
   id: string;
   name: CategoryName;
   slug: string;
+  sizeSystem: SizeSystem;
+  image: string | null;
 }
 
-// ─── Product Image ─────────────────────────────────────────────────────────────
-
+// ─────────────────────────────────────────
+// IMAGE
+// ─────────────────────────────────────────
 export interface ProductImage {
   url: string;
-  color: string | null; // null = generic image not tied to a color
+  color: string | null;
 }
 
-// ─── Product Variant ──────────────────────────────────────────────────────────
-
-export interface ProductVariant {
-  id: string;
-  color: string;
-  hexCode: string; // e.g. "#6B7C3E" — stored in DB, never hardcoded in frontend
-  size: Size;
-  sku: string;
-  stock: number;
-  price: number | null; // null = use product basePrice
-}
-
-// ─── Variants grouped by color ────────────────────────────────────────────────
-// hexCode lives here so the frontend swatch just reads colorData.hexCode —
-// no COLOR_MAP, no hardcoding, new colors work automatically.
-
+// ─────────────────────────────────────────
+// VARIANTS GROUPED BY COLOR
+// ─────────────────────────────────────────
 export type VariantsByColor = Record<
-  string, // color name e.g. "olive"
+  string,
   {
-    hexCode: string; // e.g. "#6B7C3E"
+    hexCode: string;
     variants: {
       variantId: string;
-      size: Size;
+      size: string;
       stock: number;
     }[];
   }
 >;
 
-// ─── Product (list shape — lightweight for product cards) ─────────────────────
-
+// ─────────────────────────────────────────
+// PRODUCT — List
+// ─────────────────────────────────────────
 export interface ProductListItem {
   id: string;
   name: string;
   slug: string;
   category: Category;
   basePrice: number;
-  discountPercentage: number; // 0–100
-  finalPrice: number; // computed: basePrice * (1 - discountPercentage / 100)
+  discountPercentage: number;
+  finalPrice: number;
   thumbnail: string;
-  colors: string[]; // distinct color names e.g. ["red", "blue"]
-  inStock: boolean; // true if any variant has stock > 0
+  colors: {
+    name: string;
+    hexCode: string;
+  }[];
+  inStock: boolean;
 }
 
-// ─── Product (detail shape — for product detail page) ─────────────────────────
-
+// ─────────────────────────────────────────
+// PRODUCT — Detail
+// ─────────────────────────────────────────
 export interface ProductDetail {
   id: string;
   name: string;
@@ -85,76 +80,54 @@ export interface ProductDetail {
   discountPercentage: number;
   finalPrice: number;
   images: ProductImage[];
-  variantsByColor: VariantsByColor; // hex is inside here — frontend needs nothing else
+  variantsByColor: VariantsByColor;
 }
 
-// ─── Cart ─────────────────────────────────────────────────────────────────────
-
-export interface CartItem {
-  variantId: string;
-  productId: string;
-  productName: string;
-  slug: string;
-  color: string;
-  hexCode: string; // carried so cart can show the color swatch without a lookup
-  size: Size;
-  quantity: number;
-  unitPrice: number; // finalPrice snapshot at time of adding to cart
-  thumbnail: string;
-}
-
-export interface Cart {
-  items: CartItem[];
-  totalItems: number;
-  totalPrice: number;
-}
-
-// ─── Order ────────────────────────────────────────────────────────────────────
-
-export interface OrderItem {
-  id: string;
-  variantId: string;
-  productName: string;
-  color: string;
-  size: Size;
-  quantity: number;
-  price: number; // snapshot price at time of purchase
-}
-
-export interface Order {
-  id: string;
-  userId: string;
-  status: OrderStatus;
-  total: number;
-  items: OrderItem[];
-  createdAt: string;
-}
-
-// ─── User ─────────────────────────────────────────────────────────────────────
-
-export interface User {
-  id: string;
-  name: string | null;
-  email: string;
-  image: string | null;
-  authProvider: AuthProvider;
-  emailVerified: string | null;
-  createdAt: string;
-}
-
-// ─── API Response wrappers ────────────────────────────────────────────────────
-
-export interface PaginatedResponse<T> {
-  data: T[];
-  pagination: {
-    page: number;
-    pageSize: number;
-    totalItems: number;
-    totalPages: number;
+// ─────────────────────────────────────────
+// FILTER & PAGINATION
+// ─────────────────────────────────────────
+export interface FilterOptions {
+  categories: {
+    name: string;
+    slug: string;
+    count: number;
+  }[];
+  sizes: string[];
+  colors: {
+    name: string;
+    hexCode: string;
+  }[];
+  priceRange: {
+    min: number;
+    max: number;
   };
 }
 
-export interface ApiError {
-  error: string;
-  code?: string;
+export interface Pagination {
+  total: number;
+  page: number;
+  perPage: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
+
+export interface ProductListResponse {
+  filters: FilterOptions;
+  products: ProductListItem[];
+  pagination: Pagination;
+}
+
+// ─────────────────────────────────────────
+// QUERY PARAMS
+// ─────────────────────────────────────────
+export interface ProductQueryParams {
+  category?: string;
+  sizes?: string[];
+  colors?: string[];
+  minPrice?: number;
+  maxPrice?: number;
+  sort?: "newest" | "price_low" | "price_high" | "discount";
+  page?: number;
+  perPage?: number;
 }

@@ -5,60 +5,104 @@ import { ProductListItem, ProductDetail } from "./types";
 const getFinalPrice = (basePrice: number, discountPercentage: number): number =>
   Math.round(basePrice * (1 - discountPercentage / 100) * 100) / 100;
 
-// ─── Product Cards (list page) ────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// PRODUCT LIST
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const shortProductList: ProductListItem[] = [
   {
     id: "prod_1",
     name: "Oxford Classic Shirt",
     slug: "oxford-classic-shirt",
-    category: { id: "cat_1", name: "shirt", slug: "shirt" },
+    category: {
+      id: "cat_1",
+      name: "shirt",
+      slug: "shirt",
+      sizeSystem: "clothing",
+      image: null,
+    },
     basePrice: 49.99,
     discountPercentage: 20,
     finalPrice: getFinalPrice(49.99, 20),
     thumbnail: "/products/product_image.png",
-    colors: ["white", "blue", "olive"],
+    colors: [
+      { name: "white", hexCode: "#F5F5F5" },
+      { name: "blue", hexCode: "#3B82F6" },
+      { name: "olive", hexCode: "#6B7C3E" },
+    ],
     inStock: true,
   },
   {
     id: "prod_2",
     name: "Urban Graphic Tee",
     slug: "urban-graphic-tee",
-    category: { id: "cat_2", name: "t-shirt", slug: "t-shirt" },
+    category: {
+      id: "cat_2",
+      name: "t-shirt",
+      slug: "t-shirt",
+      sizeSystem: "clothing",
+      image: null,
+    },
     basePrice: 29.99,
     discountPercentage: 0,
     finalPrice: getFinalPrice(29.99, 0),
     thumbnail: "/products/product_image.png",
-    colors: ["black", "white", "red"],
+    colors: [
+      { name: "black", hexCode: "#1C1C1C" },
+      { name: "white", hexCode: "#F5F5F5" },
+      { name: "red", hexCode: "#EF4444" },
+    ],
     inStock: true,
   },
   {
     id: "prod_3",
     name: "Slim Fit Denim Jeans",
     slug: "slim-fit-denim-jeans",
-    category: { id: "cat_3", name: "jeans", slug: "jeans" },
+    category: {
+      id: "cat_3",
+      name: "jeans",
+      slug: "jeans",
+      sizeSystem: "pants",
+      image: null,
+    },
     basePrice: 69.99,
     discountPercentage: 15,
     finalPrice: getFinalPrice(69.99, 15),
     thumbnail: "/products/Jeans/too-blue-jeans.jpg",
-    colors: ["indigo", "black", "grey"],
+    colors: [
+      { name: "indigo", hexCode: "#4338CA" },
+      { name: "black", hexCode: "#1C1C1C" },
+      { name: "grey", hexCode: "#9CA3AF" },
+    ],
     inStock: true,
   },
   {
     id: "prod_4",
     name: "Essential Pullover Hoodie",
     slug: "essential-pullover-hoodie",
-    category: { id: "cat_4", name: "hoodie", slug: "hoodie" },
+    category: {
+      id: "cat_4",
+      name: "hoodie",
+      slug: "hoodie",
+      sizeSystem: "clothing",
+      image: null,
+    },
     basePrice: 59.99,
     discountPercentage: 10,
     finalPrice: getFinalPrice(59.99, 10),
     thumbnail: "/products/product_image.png",
-    colors: ["charcoal", "navy", "sand"],
+    colors: [
+      { name: "charcoal", hexCode: "#4B5563" },
+      { name: "navy", hexCode: "#1E3A5F" },
+      { name: "sand", hexCode: "#C2A97A" },
+    ],
     inStock: true,
   },
 ];
 
-// ─── Product Details (detail page) ───────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// PRODUCT DETAILS
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const shortProductDetailsList: ProductDetail[] = [
   {
@@ -67,7 +111,13 @@ export const shortProductDetailsList: ProductDetail[] = [
     slug: "oxford-classic-shirt",
     description:
       "A timeless Oxford shirt crafted from 100% breathable cotton. Slim fit with a button-down collar, perfect for both casual and semi-formal occasions.",
-    category: { id: "cat_1", name: "shirt", slug: "shirt" },
+    category: {
+      id: "cat_1",
+      name: "shirt",
+      slug: "shirt",
+      sizeSystem: "clothing",
+      image: null,
+    },
     basePrice: 49.99,
     discountPercentage: 20,
     finalPrice: getFinalPrice(49.99, 20),
@@ -113,7 +163,13 @@ export const shortProductDetailsList: ProductDetail[] = [
     slug: "urban-graphic-tee",
     description:
       "A relaxed-fit graphic t-shirt made from soft 180gsm jersey cotton. Features a bold front print with a crew neck and dropped shoulders.",
-    category: { id: "cat_2", name: "t-shirt", slug: "t-shirt" },
+    category: {
+      id: "cat_2",
+      name: "t-shirt",
+      slug: "t-shirt",
+      sizeSystem: "clothing",
+      image: null,
+    },
     basePrice: 29.99,
     discountPercentage: 0,
     finalPrice: getFinalPrice(29.99, 0),
@@ -159,7 +215,13 @@ export const shortProductDetailsList: ProductDetail[] = [
     slug: "slim-fit-denim-jeans",
     description:
       "Classic slim-fit jeans in premium stretch denim. Five-pocket styling with a mid-rise waist. Comfortable enough for all-day wear without sacrificing style.",
-    category: { id: "cat_3", name: "jeans", slug: "jeans" },
+    category: {
+      id: "cat_3",
+      name: "jeans",
+      slug: "jeans",
+      sizeSystem: "pants",
+      image: null,
+    },
     basePrice: 69.99,
     discountPercentage: 15,
     finalPrice: getFinalPrice(69.99, 15),
@@ -172,28 +234,28 @@ export const shortProductDetailsList: ProductDetail[] = [
       indigo: {
         hexCode: "#4338CA",
         variants: [
-          { variantId: "var_25", size: "S", stock: 4 },
-          { variantId: "var_26", size: "M", stock: 6 },
-          { variantId: "var_27", size: "L", stock: 5 },
-          { variantId: "var_28", size: "XL", stock: 2 },
+          { variantId: "var_25", size: "30", stock: 4 }, // ← pants sizes
+          { variantId: "var_26", size: "32", stock: 6 },
+          { variantId: "var_27", size: "34", stock: 5 },
+          { variantId: "var_28", size: "36", stock: 2 },
         ],
       },
       black: {
         hexCode: "#1C1C1C",
         variants: [
-          { variantId: "var_29", size: "S", stock: 3 },
-          { variantId: "var_30", size: "M", stock: 7 },
-          { variantId: "var_31", size: "L", stock: 4 },
-          { variantId: "var_32", size: "XL", stock: 0 },
+          { variantId: "var_29", size: "30", stock: 3 },
+          { variantId: "var_30", size: "32", stock: 7 },
+          { variantId: "var_31", size: "34", stock: 4 },
+          { variantId: "var_32", size: "36", stock: 0 },
         ],
       },
       grey: {
         hexCode: "#9CA3AF",
         variants: [
-          { variantId: "var_33", size: "S", stock: 2 },
-          { variantId: "var_34", size: "M", stock: 3 },
-          { variantId: "var_35", size: "L", stock: 1 },
-          { variantId: "var_36", size: "XL", stock: 0 },
+          { variantId: "var_33", size: "30", stock: 2 },
+          { variantId: "var_34", size: "32", stock: 3 },
+          { variantId: "var_35", size: "34", stock: 1 },
+          { variantId: "var_36", size: "36", stock: 0 },
         ],
       },
     },
@@ -205,7 +267,13 @@ export const shortProductDetailsList: ProductDetail[] = [
     slug: "essential-pullover-hoodie",
     description:
       "A heavyweight 320gsm fleece pullover hoodie with a kangaroo pocket and adjustable drawstring hood. Brushed interior for extra warmth.",
-    category: { id: "cat_4", name: "hoodie", slug: "hoodie" },
+    category: {
+      id: "cat_4",
+      name: "hoodie",
+      slug: "hoodie",
+      sizeSystem: "clothing",
+      image: null,
+    },
     basePrice: 59.99,
     discountPercentage: 10,
     finalPrice: getFinalPrice(59.99, 10),

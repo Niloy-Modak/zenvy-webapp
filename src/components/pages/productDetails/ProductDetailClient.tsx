@@ -2,16 +2,26 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ProductDetail, Size } from "@/database/types";
+import { ProductDetail } from "@/database/types";
 import FavoriteButton from "@/components/shared/ui/FavoriteButton";
 
-const SIZE_LABELS: Record<Size, string> = {
+// ─── Size display label ───────────────────────────────────────────────────────
+// Clothing sizes get full labels, pants sizes (numbers) display as-is
+const CLOTHING_SIZE_LABELS: Record<string, string> = {
+  XS: "X-Small",
   S: "Small",
   M: "Medium",
   L: "Large",
   XL: "X-Large",
   XXL: "XX-Large",
 };
+
+function getSizeLabel(size: string, sizeSystem: "clothing" | "pants"): string {
+  if (sizeSystem === "pants") return size; // "30", "32", "34" — show as-is
+  return CLOTHING_SIZE_LABELS[size] ?? size; // fallback to raw value if unknown
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default function ProductDetailClient({
   product,
@@ -22,11 +32,12 @@ export default function ProductDetailClient({
   const initialColor = colorEntries[0][0];
 
   const [selectedColor, setSelectedColor] = useState<string>(initialColor);
-  const [selectedSize, setSelectedSize] = useState<Size | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null); // ← string, not Size
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState(product.images[0]?.url ?? "");
 
   const currentColorData = product.variantsByColor[selectedColor];
+  const sizeSystem = product.category.sizeSystem; // "clothing" | "pants"
 
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
@@ -44,18 +55,12 @@ export default function ProductDetailClient({
   };
 
   return (
-    // 1. Added overflow-x-hidden to prevent `scale-110` or shadows from leaking outside the viewport
     <section className="overflow-x-hidden">
       <div className="py-8 sm:py-12">
-        {/* 2. Added min-w-0 to the main flex container to prevent child blowout */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 standard-width min-w-0">
-          
           {/* ── LEFT: Image Gallery ── */}
-          {/* 3. Added w-full and min-w-0 so it respects parent bounds */}
           <div className="flex flex-col-reverse sm:flex-row gap-4 lg:w-[55%] w-full min-w-0">
-            
             {/* Thumbnails */}
-            {/* 4. Added w-full sm:w-auto to prevent the horizontal scroll from pushing the page width */}
             <div className="flex flex-row sm:flex-col gap-3 overflow-x-auto sm:overflow-visible w-full sm:w-auto pb-2 sm:pb-0">
               {product.images.map((img, i) => {
                 const isActive =
@@ -100,14 +105,13 @@ export default function ProductDetailClient({
 
           {/* ── RIGHT: Product Info ── */}
           <div className="flex flex-col gap-5 lg:w-[45%] lg:pt-2 w-full min-w-0">
-            
-            {/* Title + Favorite Button */}
+            {/* Title + Favorite */}
             <div className="flex items-start justify-between gap-4">
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight uppercase tracking-tight flex-1">
                 {product.name}
               </h1>
-              <FavoriteButton 
-                productId={product.slug} 
+              <FavoriteButton
+                productId={product.slug}
                 variant="inline"
                 size="lg"
               />
@@ -132,17 +136,20 @@ export default function ProductDetailClient({
 
             <hr className="border-gray-100" />
 
-            {/* Product Description */}
-            <p className="text-paragraph">
-              {product.description}
-            </p>
+            {/* Description */}
+            <p className="text-paragraph">{product.description}</p>
 
             {/* Color Selector */}
             <div>
               <p className="text-sm font-semibold text-gray-700 mb-3">
-                Select Colors
+                Select Color
+                {/* Show selected color name next to label */}
+                {selectedColor && (
+                  <span className="ml-2 font-normal text-gray-400 capitalize">
+                    — {selectedColor}
+                  </span>
+                )}
               </p>
-              {/* 5. Added flex-wrap just in case there are many colors */}
               <div className="flex flex-wrap gap-3">
                 {colorEntries.map(([colorName, colorData]) => (
                   <button
@@ -177,16 +184,24 @@ export default function ProductDetailClient({
             <div>
               <p className="text-sm font-semibold text-gray-700 mb-3">
                 Choose Size
+                {/* Hint: waist size for pants */}
+                {sizeSystem === "pants" && (
+                  <span className="ml-2 font-normal text-gray-400">
+                    (waist in inches)
+                  </span>
+                )}
               </p>
               <div className="flex flex-wrap gap-2">
                 {currentColorData.variants.map(({ variantId, size, stock }) => {
                   const outOfStock = stock === 0;
                   const isSelected = selectedSize === size;
+
                   return (
                     <button
                       key={variantId}
                       onClick={() => !outOfStock && setSelectedSize(size)}
                       disabled={outOfStock}
+                      title={outOfStock ? "Out of stock" : size}
                       className={`px-5 py-2 rounded-full text-sm font-medium border transition-all duration-200
                         ${
                           isSelected
@@ -196,7 +211,8 @@ export default function ProductDetailClient({
                               : "bg-white text-gray-700 border-gray-200 hover:border-gray-900 hover:text-gray-900"
                         }`}
                     >
-                      {SIZE_LABELS[size]}
+                      {getSizeLabel(size, sizeSystem)}{" "}
+                      {/* ← uses helper, no crash */}
                     </button>
                   );
                 })}
@@ -206,7 +222,6 @@ export default function ProductDetailClient({
             <hr className="border-gray-100" />
 
             {/* Quantity + Add to Cart */}
-            {/* 6. Added flex-wrap sm:flex-nowrap so narrow phones don't force a horizontal scroll */}
             <div className="flex flex-wrap sm:flex-nowrap items-center gap-4">
               <div className="flex items-center gap-4 bg-gray-100 rounded-full px-5 py-3">
                 <button
