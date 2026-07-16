@@ -2,7 +2,7 @@
 // No "use client" — server component
 
 import { notFound } from "next/navigation";
-import { shortProductDetailsList } from "@/database/constants";
+import { shortProductDetailsList } from "@/database/data/product.constants";
 import ProductDetailClient from "@/components/pages/productDetails/ProductDetailClient";
 // import ProductDetailClient from "@/components/ProductDetailClient";
 

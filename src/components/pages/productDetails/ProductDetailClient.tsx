@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ProductDetail } from "@/database/types";
+import { ProductDetail } from "@/database/types/product.type";
 import FavoriteButton from "@/components/shared/ui/FavoriteButton";
 
 // ─── Size display label ───────────────────────────────────────────────────────

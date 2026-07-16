@@ -1,8 +1,8 @@
-// @/database/constants.ts
+// @/database/data/product.constants.ts
 
-import { ProductListItem, ProductDetail } from "./types";
+import { ProductListItem, ProductDetail } from "../types/product.type";
 
-const getFinalPrice = (basePrice: number, discountPercentage: number): number =>
+export const getFinalPrice = (basePrice: number, discountPercentage: number): number =>
   Math.round(basePrice * (1 - discountPercentage / 100) * 100) / 100;
 
 // ─────────────────────────────────────────────────────────────────────────────

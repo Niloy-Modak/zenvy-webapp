@@ -1,6 +1,6 @@
 // src/components/pages/home/TopLists.tsx
 import ShopCart from "@/components/shared/carts/ShopCart";
-import { shortProductList } from "@/database/constants"; 
+import { shortProductList } from "@/database/data/product.constants"; 
 
 
 export default function TopLists() {

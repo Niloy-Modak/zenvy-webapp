@@ -1,7 +1,7 @@
 // components/ShopCart.tsx
 "use client";
 
-import { ProductListItem } from "@/database/types";
+import { ProductListItem } from "@/database/types/product.type";
 import Image from "next/image";
 import Link from "next/link";
 import FavoriteButton from "../ui/FavoriteButton";

@@ -1,4 +1,4 @@
-// @/database/types.ts
+// @/database/product.type.ts
 
 // ─────────────────────────────────────────
 // CATEGORY
