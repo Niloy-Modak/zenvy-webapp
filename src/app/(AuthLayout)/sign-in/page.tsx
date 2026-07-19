@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import SignInForm from '@/components/pages/signIn/SignInForm';
 
 export const metadata: Metadata = {
-  title: "Sign In | ZENVY",
+  title: "ZENVY | Sign In",
   description: "Users sign in page. user can sign in or login there account",
 };
 
