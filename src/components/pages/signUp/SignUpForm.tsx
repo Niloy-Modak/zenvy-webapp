@@ -147,7 +147,7 @@ export default function SignUpForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full cursor-pointer py-3.5 mt-4 text-white font-semibold bg-linear-to-br from-primary via-primary to-primary/90 rounded-2xl hover:shadow-xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-white/50 transition-all duration-300 active:scale-95 border border-primary/50 relative overflow-hidden group/btn"
+            className="w-full cursor-pointer py-3.5 mt-4 text-white font-semibold bg-linear-to-br from-primary via-primary to-primary/90 rounded-full hover:shadow-xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-white/50 transition-all duration-300 active:scale-95 border border-primary/50 relative overflow-hidden group/btn"
           >
             <div className="absolute inset-0 bg-linear-to-r from-white/20 via-white/0 to-white/0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
             <span className="relative">Create Account</span>

@@ -1,3 +1,4 @@
+import HomeButton from "@/components/auth-layout/HomeButton";
 import SecondaryButton from "@/components/shared/ui/SecondaryButton";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,7 +52,7 @@ export default function AuthLayout({
           {/* Back to Home Button */}
           <div className="text-right">
             <Link href="/">
-              <SecondaryButton text="Back to Home" />
+              <HomeButton />
             </Link>
           </div>
         </nav>

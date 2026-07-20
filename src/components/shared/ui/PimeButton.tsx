@@ -10,6 +10,11 @@ type PrimeButtonProps = {
   type?: "button" | "submit" | "reset";
 };
 
+const ANIMATION_TRANSITION = {
+  duration: 0.35,
+  ease: [0.76, 0, 0.24, 1],
+} as const;
+
 export default function PrimeButton({ text, onClick, type }: PrimeButtonProps) {
   const [hovered, setHovered] = useState(false);
 
@@ -17,7 +22,6 @@ export default function PrimeButton({ text, onClick, type }: PrimeButtonProps) {
     <button
       onClick={onClick}
       type={type}
-
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="group relative w-full md:w-auto overflow-hidden rounded-full bg-primary hover:shadow-md transition-all duration-300 cursor-pointer"
@@ -27,10 +31,7 @@ export default function PrimeButton({ text, onClick, type }: PrimeButtonProps) {
         <div className="relative h-7 overflow-hidden">
           <motion.div
             animate={{ y: hovered ? "-50%" : "0%" }}
-            transition={{
-              duration: 0.35,
-              ease: [0.76, 0, 0.24, 1],
-            }}
+            transition={ANIMATION_TRANSITION}
             className="flex flex-col items-center"
           >
             <span className="h-7 text-2xs font-light leading-7 tracking-[-0.02em] text-white">
@@ -46,10 +47,7 @@ export default function PrimeButton({ text, onClick, type }: PrimeButtonProps) {
         <div className="relative h-5 w-5 overflow-hidden">
           <motion.div
             animate={{ y: hovered ? "-50%" : "0%" }}
-            transition={{
-              duration: 0.35,
-              ease: [0.76, 0, 0.24, 1],
-            }}
+            transition={ANIMATION_TRANSITION}
             className="flex flex-col"
           >
             <div className="flex h-5 items-center justify-center">

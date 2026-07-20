@@ -2,25 +2,29 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
-type SecondaryButtonProps = {
-  text: string;
+type HomeButtonProps = {
+  text?: ReactNode;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
 };
 
-// Added "as const" at the end to lock the array type as a 4-number tuple
 const ANIMATION_TRANSITION = {
   duration: 0.35,
   ease: [0.76, 0, 0.24, 1],
 } as const;
 
-export default function SecondaryButton({
-  text,
+export default function HomeButton({
+  text = (
+    <>
+      <span className="lg:hidden">Home</span>
+      <span className="hidden lg:inline">Back to Home</span>
+    </>
+  ),
   onClick,
   type,
-}: SecondaryButtonProps) {
+}: HomeButtonProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -31,7 +35,7 @@ export default function SecondaryButton({
       onMouseLeave={() => setHovered(false)}
       className="group relative w-auto overflow-hidden rounded-full backdrop-blur-md bg-background/20 border border-primary/30 hover:bg-background/30 transition-all duration-300 cursor-pointer shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)]"
     >
-      <div className="flex items-center justify-center md:justify-start gap-2 px-6 py-3 md:px-10 ">
+      <div className="flex items-center justify-center md:justify-start gap-2 sm:py-3 py-2 px-4 sm:px-6">
         {/* text */}
         <div className="relative h-6 overflow-hidden">
           <motion.div

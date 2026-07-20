@@ -1,6 +1,5 @@
-import DashboardLayoutClient from "@/components/dashboard/Dashboardlayoutclient";
+import DashboardLayoutClient from "@/components/dashboard-layout/Dashboardlayoutclient";
 import React from "react";
-// import DashboardLayoutClient from "./dashboardLayoutClient";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
